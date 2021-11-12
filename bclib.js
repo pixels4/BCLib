@@ -95,7 +95,7 @@ var bclib = {
           taskmgr.click()
         },
         filemgr: function(){
-          var systxt = "<details><summary><code title='Системные файлы и библиотеки (*.dll, *.lib, *.bc)'>BlackCube</code></summary>"
+          var systxt = "<details><summary><code title='Системные файлы и библиотеки (*.sys, *.lib, *.bc)'>Система</code></summary>"
         var progtxt = "<details><summary><code title='Программы и файлы программ (*.js, *.json, *.func)'>Программы</code></summary>"
         var txt = ""
         var file = ""
