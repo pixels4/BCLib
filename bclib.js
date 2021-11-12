@@ -1,4 +1,4 @@
-//BCLIb JavaScript Library
+//BCLib JavaScript Library
 //by pixels4tech@gmail.com
 
 document.body.style.fontFamily = "sans-serif"
