@@ -268,8 +268,7 @@ var bclib = {
       desktop: function(){
         desktop.innerHTML += "\
         <img src='images/folder.png' width=50 height=50 onclick='bclib.util.filemgr()'><br><span style='color: white'>Файловый<br>менеджер</span><br><br>\
-        <img src='images/cmd.png' width=50 height=50 onclick='bclib.util.cmd(1)'><br><span style='color: white'>Командная<br>строка</span><br><br>\
-        <img src='images/file-sys.png' width=50 height=50 onclick='bclib.util.openPage(\"about.html\")'><br><span style='color: white'>О BCLib</span>"
+        <img src='images/cmd.png' width=50 height=50 onclick='bclib.util.cmd(1)'><br><span style='color: white'>Командная<br>строка</span><br><br>"
       },
       json: {},
       task: {},
