@@ -42,7 +42,7 @@ var bclib = {
           localStorage[file] = "createWindow('"+file+"', '<iframe src=\""+url+"\" width="+width+" height="+height+"></iframe>')"
         },
         openPage: function(page){
-          createWindow(page+" - Flippy", "<iframe style='overflow: auto; resize: both;' src='"+page+"' width=400 height=300></iframe>")
+          createWindow(page, "<iframe style='overflow: auto; resize: both;' src='"+page+"' width=400 height=300></iframe>")
         },
         mediaplayer: function(file, state){
           var fileJSON = JSON.parse(localStorage[file])
