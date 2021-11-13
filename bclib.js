@@ -177,31 +177,6 @@ var bclib = {
           createWindow("Запустить","<input id='torun'> <button onclick='bclib.temp.torun = torun.value; bclib.util.close(); try{eval(localStorage[bclib.temp.torun])}catch(e){createWindow(\"Error\", e)}; delete bclib.temp.torun'>OK</button>")
         }
         },
-        gui: function(state){
-          if(state){
-            appPanel.style.display = "block"
-            lastPanel.style.display = "block"
-          }else{
-            appPanel.style.display = "none"
-            lastPanel.style.display = "none"
-          }
-        },
-        packmgr: function(packs, state){
-          var toret = "PACKMGR<br>***<br>"
-          if(state){
-            for(var i = 0; i < packs.length; i++){
-              toret += bclib.util.file.download(packs[i]+".js", "programs/"+packs[i]+".js")
-              toret += "<br>"
-            }
-          }else{
-            for(var i = 0; i < packs.length; i++){
-              bclib.util.file.delete(packs[i]+".js")
-              toret += "Deleted "+packs[i]+"<br>"
-            }
-          }
-          toret += "***"
-          return toret
-        },
         edit: function(v){
           createWindow(v, "<textarea id=TA>"+eval(v)+"</textarea><br><button id=BTN>OK</button>")
           BTN.onclick = ()=>{eval(v + " = " + "'" + TA.value + "'")}
@@ -261,7 +236,9 @@ var bclib = {
         windowStyle: "overflow: auto; resize: both; background: white; display: inline-block; border: solid 1px black; position: absolute;",
         closeButtonStyle: "float: right; background: white; border: solid 1px black;",
         windowHeaderStyle: "",
-
+        
+        closeButtonText: " X ",    
+        
         deletedFiles: {}
 
       },
@@ -280,7 +257,7 @@ var wnd = 0
         var left = Math.floor(Math.random()*(window.innerWidth - 450))
         var top = Math.floor(Math.random()*(window.innerHeight - 450))
         windows.innerHTML += "<div draggable='true' id='w"+wnd+"' style='"+bclib.temp.windowStyle+"'> <div id='header' style='"+bclib.temp.windowHeaderStyle+"'>" +
-        title + " <button onclick='windows.removeChild(document.getElementById(\"w"+wnd+"\")); delete bclib.task[\""+title+"\"]' title=\"Закрыть\" style='"+bclib.temp.closeButtonStyle+"'> X </button></div> " +
+        title + " <button onclick='windows.removeChild(document.getElementById(\"w"+wnd+"\")); delete bclib.task[\""+title+"\"]' title=\"Закрыть\" style='"+bclib.temp.closeButtonStyle+"'>" + bclib.temp.closeButtonText + "</button></div> " +
           "<hr style='margin: 0px; clear: both; background: black;'>" + html + "</div>"
         document.getElementById("w"+wnd).style.left = left+"px"
         document.getElementById("w"+wnd).style.top = top+"px"
