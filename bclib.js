@@ -33,13 +33,13 @@ var bclib = {
           windows.innerHTML = ""
         },
         reboot: function(){
-          window.location.href="boot.html"
+          window.location.reload()
         },
         showMessage: function(title, text, btn, click){
           createWindow(title, text + "<br><button onclick='"+click+"'>"+btn+"</button>")
         },
         addApp: function(file, url, width, height){
-          localStorage[file] = "createWindow('"+file+"', '<iframe src=\""+url+"\" width="+width+" height="+height+"></iframe>')"
+          localStorage[file] = "createWindow('"+file+"', '<iframe style=\"overflow: auto; resize: both;\" src=\""+url+"\" width="+width+" height="+height+"></iframe>')"
         },
         openPage: function(page){
           createWindow(page, "<iframe style='overflow: auto; resize: both;' src='"+page+"' width=400 height=300></iframe>")
@@ -89,7 +89,7 @@ var bclib = {
           }
         },
         cmd: function(state){
-          bclib.CLI.createCLIWindow('Системная консоль', state); bclib.CLI.input('bclib.CLI.echo(eval(bclib.temp.inputValue))')
+          bclib.CLI.createCLIWindow('Системная консоль', state); bclib.CLI.input('bclib.CLI.echo(bclib.util.run(bclib.temp.inputValue))')
         },
         taskmgr: function(){
           taskmgr.click()
@@ -211,14 +211,18 @@ var bclib = {
           },
           download: function(filename, link){
             var xmlhttp = new XMLHttpRequest()
-            var ret = "Downloaded from " + link + " to " + filename
+            var ret = "Загружено с " + link + " в " + filename
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     localStorage[filename] =  xmlhttp.responseText
                 }
             }
-            xmlhttp.open("GET", link, true)
-            xmlhttp.send()
+            try{
+                  xmlhttp.open("GET", link, true)
+                  xmlhttp.send()
+            }catch(e){
+                  ret = "Ошибка: " + e
+            }
             return ret
           },
           open: function(filename){
@@ -263,9 +267,8 @@ var wnd = 0
         document.getElementById("w"+wnd).style.top = top+"px"
         document.getElementById("w"+wnd).ondragend = function(e){
           e.preventDefault()
-          var rect = document.getElementById("w"+wnd).getBoundingClientRect()
-          var dx = e.pageX //- rect.left
-          var dy = e.pageY //- rect.top
+          var dx = e.pageX
+          var dy = e.pageY
           document.getElementById("w"+wnd).style.left = dx+"px"
           document.getElementById("w"+wnd).style.top = dy+"px"
           //console.log(dx+" "+dy)
