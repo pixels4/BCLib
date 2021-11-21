@@ -276,6 +276,11 @@ var bclib = {
                  bclib.util.close();
                  createWindow("", "<h1>Done.</h1>"); 
             },
+            winxp: function(){
+                  bclib.temp.windowStyle = "overflow: auto; resize: both; background: white; display: inline-block; border: solid 2px blue; margin: 2px; position: absolute; border-radius: 5px;",
+                  bclib.temp.closeButtonStyle = "float: right; background: red; color: white; padding-left: 5px; padding-right: 5px; font-weight: bold; border-radius: 5px;",
+                  bclib.temp.windowHeaderStyle = "background: blue; color: white;"
+            },
             secret: function(){
                   delete document.body.style.backgroundImage;
                   document.body.style.background = "#39ff14";
