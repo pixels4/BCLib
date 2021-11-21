@@ -333,5 +333,9 @@ var wnd = 0
         }
 
       }
+
+bclib.util.tmp = bclib.temp;
+bclib.util.file = bclib.file;
+
 window.oncontextmenu = ()=>{return false}
 window.ondragover = (e)=>{e.preventDefault()}
