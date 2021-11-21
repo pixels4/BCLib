@@ -300,7 +300,7 @@ var bclib = {
       },
       json: {},
       task: {},
-      version: "BCLib v4.3.5"
+      version: "BCLib v4.3.8"
   }
 var wnd = 0
       function createWindow(title, html){
