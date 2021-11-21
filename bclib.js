@@ -336,6 +336,7 @@ var wnd = 0
 
 bclib.util.tmp = bclib.temp;
 bclib.util.file = bclib.file;
+if(localStorage["autorun.bc"]) bclib.file.run("autorun.bc");
 
 window.oncontextmenu = ()=>{return false}
 window.ondragover = (e)=>{e.preventDefault()}
