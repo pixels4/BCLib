@@ -4,7 +4,15 @@
 document.body.style.fontFamily = "sans-serif"
 document.body.style.backgroundImage = "url('images/bg.png')"
 document.body.style.backgroundRepeat = "no-repeat"
-document.querySelector("style").innerHTML += "*{cursor: url(\"images/cursor.cur\"), default;}"
+
+try{
+      document.querySelector("style").innerHTML += "*{cursor: url(\"images/cursor.cur\"), default;}"
+}catch(e){
+      document.head.innerHTML += "<style></style>";
+      document.querySelector("style").innerHTML += "*{cursor: url(\"images/cursor.cur\"), default;}"
+}
+if(!desktop) document.body.innerHTML += "<div id='desktop'></div>";
+if(!windows) document.body.innerHTML += "<div id='windows'></div>";
 
 var bclib = {
       CLI: {
@@ -196,6 +204,7 @@ var bclib = {
           document.body.style.background = clr.value;
           }
         },
+      },
         file: {
           write: function(filename, text){
             localStorage[filename] = text
@@ -244,14 +253,7 @@ var bclib = {
             createWindow(filename, "<div>" + bclib.util.file.read(filename) + "</div>")
           }
         },
-      },
       temp: {
-        //Windows XP style:
-        /*windowStyle: "overflow: auto; resize: both; background: white; display: inline-block; border: solid 2px blue; margin: 2px; position: absolute; border-radius: 5px;",
-        closeButtonStyle: "float: right; background: red; color: white; padding-left: 5px; padding-right: 5px; font-weight: bold; border-radius: 5px;",
-        windowHeaderStyle: "background: blue; color: white;",*/
-
-        //Normal style:
         windowStyle: "overflow: auto; resize: both; background: white; display: inline-block; border: solid 1px black; position: absolute;",
         closeButtonStyle: "float: right; background: white; border: solid 1px black;",
         windowHeaderStyle: "",
@@ -300,7 +302,8 @@ var bclib = {
       },
       json: {},
       task: {},
-      version: "BCLib v4.3.8"
+      version: "BCLib v4.5.1 (22.11.2021)",
+      ver: 4.5
   }
 var wnd = 0
       function createWindow(title, html){
