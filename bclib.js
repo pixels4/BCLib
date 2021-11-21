@@ -181,6 +181,21 @@ var bclib = {
           createWindow(v, "<textarea id=TA>"+eval(v)+"</textarea><br><button id=BTN>OK</button>")
           BTN.onclick = ()=>{eval(v + " = " + "'" + TA.value + "'")}
         },
+        ythemer: function(){
+          createWindow("YThemer", "\
+          <fieldset><legend>Фон</legend>\
+          <input id='clr' type='color' value='#ff0000'><button onclick='bclib.temp.chclr()' style='float: right;'>OK</button></fieldset>\
+          <fieldset><legend>Окна</legend>\
+          <div style='clear: both;'>windowStyle <button style='float: right;' onclick='bclib.util.edit(`bclib.temp.windowStyle`)'>Открыть</button></div>\
+          <div style='clear: both;'>windowHeaderStyle <button style='float: right;' onclick='bclib.util.edit(`bclib.temp.windowHeaderStyle`)'>Открыть</button></div>\
+          <div style='clear: both;'>closeButtonStyle <button style='float: right;' onclick='bclib.util.edit(`bclib.temp.closeButtonStyle`)'>Открыть</button></div>\
+          <div style='clear: both;'>closeButtonText <button style='float: right;' onclick='bclib.util.edit(`bclib.temp.closeButtonText`)'>Открыть</button></div></fieldset>");
+          
+          bclib.temp.chclr = function(){
+          delete document.body.style.backgroundImage;
+          document.body.style.background = clr.value;
+          }
+        },
         file: {
           write: function(filename, text){
             localStorage[filename] = text
@@ -245,6 +260,33 @@ var bclib = {
         
         deletedFiles: {}
 
+      },
+      themes: {
+            normal: function(){
+                 bclib.temp.windowStyle = "overflow: auto; resize: both; background: white; display: inline-block; border: solid 1px black; position: absolute;",
+                 bclib.temp.closeButtonStyle = "float: right; background: white; border: solid 1px black;",
+                 bclib.temp.windowHeaderStyle = "",
+                 createWindow("", "<h1>Done.</h1>");
+            },
+            dark: function(){
+                 delete document.body.style.backgroundImage;
+                 document.body.style.background = "#000000";
+                 bclib.temp.closeButtonStyle = "float: right; background: black; color: white; border: solid 1px white;";
+                 bclib.temp.windowStyle += "background: black; color: white; border: solid 1px white;";
+                 bclib.util.close();
+                 createWindow("", "<h1>Done.</h1>"); 
+            },
+            secret: function(){
+                  delete document.body.style.backgroundImage;
+                  document.body.style.background = "#39ff14";
+                  document.body.style.fontFamily = "Comic Sans MS, Comic Sans, cursive";
+                  bclib.temp.windowHeaderStyle = "background: green; color: deepPink; font-size: 300%;";
+                  bclib.temp.closeButtonStyle = "float: right; background: aqua; font-size: 100%;"
+                  bclib.temp.closeButtonText = " # ";
+                  bclib.temp.windowStyle += "background: red; color: blue;"
+                  bclib.util.close();
+                  createWindow("", "<h1>Done.</h1>"); 
+            }
       },
       desktop: function(){
         desktop.innerHTML += "\
