@@ -182,7 +182,7 @@ var bclib = {
           createWindow("Удалить","<input id='todel'> <button onclick='bclib.temp.deletedFiles[todel.value] = localStorage[todel.value]; delete localStorage[todel.value]'>OK</button>")
         }
         bclib.temp.new = function(){
-          createWindow("Запустить","<input id='fn'> <button onclick='bclib.file.write(fn.value, \"\")'>OK</button>")
+          createWindow("Создать","<input id='fn'> <button onclick='bclib.file.write(fn.value, \"\")'>OK</button>")
         }
         },
         edit: function(v){
