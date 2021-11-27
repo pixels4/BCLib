@@ -30,6 +30,23 @@ var bclib = {
         }
       },
       util: {
+        utilmgr: function(object){
+          createWindow("Utility Manager", "<input type='text' id='obj' placeholder='Адрес объекта' value='bclib.util'> <button id='ok'>OK</button><hr style='margin:0px;'><div id='list'></div><input type='text' id='params' placeholder='Параметры'>")
+
+          ok.onclick = function(){
+            list.innerHTML = ""
+            for(var i in eval(obj.value)){
+                if(typeof(eval(obj.value)[i]) == "function"){
+                    list.innerHTML += "<img src='images/run.png' width=16 height=16> <code onclick='eval(\""+obj.value+"."+i+"(\"+params.value+\")"+"\")'>" + i +"</code><hr style='margin:0px;'>"
+                }
+            }
+          }
+
+          if(object){
+            obj.value = object
+            ok.click()
+          }
+        },
         run: function(tr){
           try{
             return eval(tr)
