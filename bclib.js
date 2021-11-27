@@ -302,7 +302,7 @@ var bclib = {
       },
       json: {},
       task: {},
-      version: "BCLib v4.5.1 (22.11.2021)",
+      version: "BCLib v4.5.2 (27.11.2021)",
       ver: 4.5
   }
 var wnd = 0
