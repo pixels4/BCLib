@@ -177,12 +177,12 @@ var bclib = {
             txt += "<img src='images/"+file+"' width=16 height=16><code title='"+title+"' oncontextmenu=\'"+rclick+"; return false;\' onclick='"+click+"' >" + i + "</code><hr style='margin: 0px;'>"
           }
         }
-      createWindow("localStorage", systxt + "</details><hr style='margin: 0px;'>" +progtxt + "</details><hr style='margin: 0px;'>" + txt + "<button onclick='window.del()'>Удалить файл</button> <button onclick='window.run()'>Запустить скрипт</button>")
-        window.del = function(){
+      createWindow("localStorage", systxt + "</details><hr style='margin: 0px;'>" +progtxt + "</details><hr style='margin: 0px;'>" + txt + "<button onclick='bclib.temp.del()'>Удалить файл</button> <button onclick='bclib.temp.new()'>Новый файл</button>")
+        bclib.temp.del = function(){
           createWindow("Удалить","<input id='todel'> <button onclick='bclib.temp.deletedFiles[todel.value] = localStorage[todel.value]; delete localStorage[todel.value]'>OK</button>")
         }
-        window.run = function(){
-          createWindow("Запустить","<input id='torun'> <button onclick='bclib.temp.torun = torun.value; bclib.util.close(); try{eval(localStorage[bclib.temp.torun])}catch(e){createWindow(\"Error\", e)}; delete bclib.temp.torun'>OK</button>")
+        bclib.temp.new = function(){
+          createWindow("Запустить","<input id='fn'> <button onclick='bclib.file.write(fn.value, \"\")'>OK</button>")
         }
         },
         edit: function(v){
