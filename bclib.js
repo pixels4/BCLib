@@ -47,6 +47,31 @@ var bclib = {
             ok.click()
           }
         },
+        yedit: function(object){
+          createWindow("YEditor", "<input type='text' id='obj' placeholder='Адрес объекта' value='bclib.util'> <button id='ok'>OK</button><hr style='margin:0px;'><div id='list'></div><button id='del'>Удалить</button> <button id='_new'>Создать</button>")
+
+          ok.onclick = function(){
+            list.innerHTML = ""
+            for(var i in eval(obj.value)){
+                list.innerHTML += "<img src='images/file-js.png' width=16 height=16> <code onclick='bclib.util.edit(\""+obj.value+"."+i+"\")'>" + i +"</code><hr style='margin:0px;'>"
+            }
+          }
+
+          del.onclick = function(){
+            createWindow("Удалить", "<input id='todel'> <button id='okdel'>OK</button>")
+            okdel.onclick = ()=>{eval("delete " + obj.value + "." + todel.value)}
+          }
+
+          _new.onclick = function(){
+            createWindow("Создать", "<input id='tonew'> <button id='oknew'>OK</button>")
+            oknew.onclick = ()=>{eval(obj.value + "." + tonew.value + " = ''")}
+          }
+
+          if(object){
+            obj.value = object
+            ok.click()
+          }
+        },
         run: function(tr){
           try{
             return eval(tr)
